@@ -79,11 +79,11 @@ function evaluatePost(post){
     });
     return stack.pop();
 }
-/////////////////////
+///////////////////// manipulating the dom
 const numsContainer  = document.querySelector('.numbers-container');
 
 for (let i = 0; i <= 9; i++){
-    const number  = document.createElement('btn');
+    const number  = document.createElement('button');
     number.id = i; 
-    numsContainer.appendChild(number);  
+    numsContainer.appendChild(number); 
 }
