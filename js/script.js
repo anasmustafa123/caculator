@@ -26,23 +26,23 @@ function operate(operator, a, b){
 
 function preToPost(exp){
     let stack  = [];
-    let result = "";
+    let result = [];
     exp.forEach(element => { //loop for all elements (number or operators)
         if( parseInt(element)){ //if number add it to the expression
-            result += parseInt(element);
+            result[result.length] = parseInt(element);
         }
         else if(element == '('){  //if '(' push to stack wait for ')'
             stack.push(element);
         }
         else if(element == ')') {  //if ')'  pop and add to final expression till '('
             while(stack[stack.length-1] != '('){
-                result += stack.pop();
+                result[result.length] = stack.pop();
             }
             stack.pop(); //removing the '('
         }else{ //if its an operator 
             for(let i = stack.length-1; i >= 0;i--){
                 if(priority(element) <=  priority(stack[i])){
-                    result += stack.pop();
+                    result[result.length] = stack.pop();
                 }else{
                     stack.push(element);
                     break;
@@ -54,7 +54,7 @@ function preToPost(exp){
         }
     });
     while(stack.length != 0){
-        result += stack.pop(); 
+        result[result.length] = stack.pop(); 
     }
     return result;
 }
