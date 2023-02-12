@@ -23,6 +23,49 @@ function operate(operator, a, b){
         default : throw new ArgumentException
     }
 }
+
+function preToPost(exp){
+    let stack  = [];
+    let result = "";
+    exp.forEach(element => { //loop for all elements (number or operators)
+        if( parseInt(element)){ //if number add it to the expression
+            result += parseInt(element);
+        }
+        else if(element == '('){  //if '(' push to stack wait for ')'
+            stack.push(element);
+        }
+        else if(element == ')') {  //if ')'  pop and add to final expression till '('
+            while(stack[stack.length-1] != '('){
+                result += stack.pop();
+            }
+            stack.pop(); //removing the '('
+        }else{ //if its an operator 
+            for(let i = stack.length-1; i >= 0;i--){
+                if(priority(element) <=  priority(stack[i])){
+                    result += stack.pop();
+                }else{
+                    stack.push(element);
+                    break;
+                }
+            }
+            if(stack.length == 0){
+                stack.push(element);
+            }
+        }
+    });
+    while(stack.length != 0){
+        result += stack.pop(); 
+    }
+    return result;
+}
+
+function priority(operator){
+    switch(operator){
+        case '/' :   case '*' : return 3;
+        case '-' :   case '+' : return 2;
+        case '(' : return 1;
+    }
+}
 /////////////////////
 const numsContainer  = document.querySelector('.numbers-container');
 
