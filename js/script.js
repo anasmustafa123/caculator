@@ -66,6 +66,19 @@ function priority(operator){
         case '(' : return 1;
     }
 }
+function evaluatePost(post){
+    let stack  = [];
+    post.forEach(element => { //loop for all elements (number or operators)
+        if(parseInt(element)){ //if number push to stack
+            stack.push(element);
+        }else{ //if its an operator 
+            let num1 = stack.pop();
+            let num2 = stack.pop();
+            stack.push(operate(element, num2, num1));
+        }
+    });
+    return stack.pop();
+}
 /////////////////////
 const numsContainer  = document.querySelector('.numbers-container');
 
