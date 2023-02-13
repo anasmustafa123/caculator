@@ -80,10 +80,30 @@ function evaluatePost(post){
     return stack.pop();
 }
 ///////////////////// manipulating the dom
-const numsContainer  = document.querySelector('.numbers-container');
 
-for (let i = 0; i <= 9; i++){
+
+const numsContainer  = document.querySelector('.numbers-container');
+const screen =  document.querySelector('.screen');
+const buttons = document.querySelectorAll('button');
+const numbers = document.querySelector('.number');
+
+
+
+for (let i = 9; i >= 0; i--){ //creating the number buttons and adding them to dom
     const number  = document.createElement('button');
+    number.classList.add('number');
     number.id = i; 
+    number.addEventListener('click',addValue);
+    number.textContent = i;
     numsContainer.appendChild(number); 
+}
+
+
+let totalExpression = [];
+let currentValue = "";
+
+
+function addValue(e){
+    totalExpression[totalExpression.length] =  (this.textContent);
+    screen.textContent  = totalExpression.join('');
 }
