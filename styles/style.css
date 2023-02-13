@@ -18,12 +18,13 @@ body{
     border-radius: 30px;
 }
 .screen{
-    display: flex;;
+    display: flex;
+    align-items: center;
     margin:  2.5vh 1.6vw 2.5vh 1.6vw;
     width: 86%;
     height: 50%;
     border-radius: 30px;
-    font-size: 110px;
+    font-size: 60px;
     overflow-x: scroll;
     font-weight: 700;
     color: white;
