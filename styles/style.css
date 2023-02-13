@@ -23,6 +23,10 @@ body{
     width: 86%;
     height: 50%;
     border-radius: 30px;
+    font-size: 110px;
+    overflow-x: scroll;
+    font-weight: 700;
+    color: white;
     background-color: rgba(31, 110, 112, 0.267);
 }
 
