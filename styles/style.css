@@ -14,7 +14,7 @@ body{
     margin-left: 10vw ;
     margin-right: 10vw ;
     margin-top: 10vh;  
-    background-color: #a2a2a2;
+    background-color: rgb(54, 53, 53);
     border-radius: 30px;
 }
 .screen{
@@ -23,7 +23,7 @@ body{
     width: 86%;
     height: 50%;
     border-radius: 30px;
-    background-color: #c45a5a;
+    background-color: rgba(31, 110, 112, 0.267);
 }
 
 .btns-container{
@@ -35,21 +35,28 @@ body{
     border-radius: 30px;
     background-color: blue;
 }
-
-.numbers-container{
-    display: flex;
-    width: 300px;
-    height: 250px;
-    border-radius: 30px;
+.numbers-container,.operators{
+     display: flex;
+     height: 250px;
+     justify-content: center;
+     align-items: center;
+     border-radius: 30px;
     padding: 8px;
     flex-wrap: wrap;
+}
+.numbers-container{
+    width: 300px;
     gap: 6px;
-    justify-content: center;
-    align-items: center;
     background-color: green;
 }
-.numbers-container button{
+.numbers-container button,.btns-container  button{
     width: 93px;
     height: 40px;
-    background-color: #c45a5a;
+    border-radius: 30px;
+    text-align: center;
+    background-color: #a2a2a2;
+}
+.operators{
+    width: 100px;
+    background: #a2a2a2;
 }
