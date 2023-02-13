@@ -86,24 +86,41 @@ const numsContainer  = document.querySelector('.numbers-container');
 const screen =  document.querySelector('.screen');
 const buttons = document.querySelectorAll('button');
 const numbers = document.querySelector('.number');
+const operators = document.querySelectorAll('.operator');
 
-
+let totalExpression = []; //total expression showed on the screen
+let numberDigits = "";    /*current number.  will be added to totalexpression when
+                            a operator is selected                 */
 
 for (let i = 9; i >= 0; i--){ //creating the number buttons and adding them to dom
     const number  = document.createElement('button');
     number.classList.add('number');
     number.id = i; 
-    number.addEventListener('click',addValue);
+    number.addEventListener('click',addDigitToScreen);
     number.textContent = i;
     numsContainer.appendChild(number); 
 }
-
-
-let totalExpression = [];
-let currentValue = "";
-
-
-function addValue(e){
-    totalExpression[totalExpression.length] =  (this.textContent);
-    screen.textContent  = totalExpression.join('');
+function addDigitToScreen(e){ //addingthe digit to the screen + adding to numberDigit 
+    screen.textContent += e.target.textContent;
+    addingDigit(e); 
 }
+function addingDigit(e){//adding to numberDigits
+    numberDigits += e.target.textContent;
+}
+
+Array.from(operators).forEach( (operator) => { //looping in all operators
+    operator.addEventListener('click', addingOperator);
+});
+function addingOperator(e){ //adding the number if exists and adding operator to the screen  
+    if(parseInt(numberDigits)){
+        addTotalNumber(e);
+    }
+    totalExpression[totalExpression.length] = e.target.textContent;
+    screen.textContent += e.target.textContent;
+}
+
+function addTotalNumber(e){//adding the number to the expression 
+    totalExpression[totalExpression.length] = numberDigits;
+    numberDigits = "";  
+}
+console.log(totalExpression);
