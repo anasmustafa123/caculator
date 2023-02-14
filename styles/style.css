@@ -52,6 +52,8 @@ body{
 .numbers-container{
     width: 300px;
     gap: 6px;
+    align-items: center;
+    
     background-color: green;
 }
 .numbers-container button,.btns-container  button{
@@ -64,4 +66,11 @@ body{
 .operators{
     width: 100px;
     background: #a2a2a2;
+}
+.row4{
+    display: flex;
+    justify-content: center;
+}
+#clear{
+    border-radius: 5px 5px 5px 20px;
 }
