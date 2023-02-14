@@ -87,7 +87,8 @@ const screen =  document.querySelector('.screen-text');
 const buttons = document.querySelectorAll('button');
 const numbers = document.querySelector('.number');
 const operators = document.querySelectorAll('.operator');
-const clearButton = document.querySelector('#clear');
+const row4   = document.querySelector(".row4");
+
 let totalExpression = []; //total expression showed on the screen
 let numberDigits = "";    /*current number.  will be added to totalexpression when
                                                             a operator is selected                 */
@@ -100,13 +101,21 @@ for (let i = 9; i >= 0; i--){ //creating the number buttons and adding them to d
         rowNumber++;
     }
     count++;
-    console.log(`.row${rowNumber}`);
-    const number  = document.createElement('button');
-    number.classList.add('number');
+    const number  = createButton('number',i);
     number.id = i; 
     number.addEventListener('click',addDigitToScreen);
-    number.textContent = i;
     document.querySelector(`.row${rowNumber}`).appendChild(number); //adding each 3 buttons to a sep rowClass 
+}
+const clearButton = createButton('clear','AC');
+row4.appendChild(clearButton);
+const equalButton = createButton('equal','=');
+row4.appendChild(equalButton);
+
+function  createButton(className, text){ //crete a button with a classNAme and a textContent
+    const button = document.createElement('button');
+    button.classList.add(className) ;
+    button.textContent = text; 
+    return button;
 }
 function addDigitToScreen(e){ //addingthe digit to the screen + adding to numberDigit 
     screen.textContent += e.target.textContent;
