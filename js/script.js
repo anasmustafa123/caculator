@@ -83,7 +83,7 @@ function evaluatePost(post){
 
 
 const numsContainer  = document.querySelector('.numbers-container');
-const screen =  document.querySelector('.screen');
+const screen =  document.querySelector('.screen-text');
 const buttons = document.querySelectorAll('button');
 const numbers = document.querySelector('.number');
 const operators = document.querySelectorAll('.operator');
