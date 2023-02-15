@@ -88,6 +88,9 @@ const buttons = document.querySelectorAll('button');
 const numbers = document.querySelector('.number');
 const operators = document.querySelectorAll('.operator');
 const row4   = document.querySelector(".row4");
+const outputScreen = document.querySelector('.screen2'); 
+const clearButton = createButton('clear','AC');
+const equalButton = createButton('equal','=');
 
 let totalExpression = []; //total expression showed on the screen
 let numberDigits = "";    /*current number.  will be added to totalexpression when
@@ -106,10 +109,10 @@ for (let i = 9; i >= 0; i--){ //creating the number buttons and adding them to d
     number.addEventListener('click',addDigitToScreen);
     document.querySelector(`.row${rowNumber}`).appendChild(number); //adding each 3 buttons to a sep rowClass 
 }
-const clearButton = createButton('clear','AC');
 row4.appendChild(clearButton);
-const equalButton = createButton('equal','=');
 row4.appendChild(equalButton);
+
+equalButton.addEventListener('click',enter);
 
 function  createButton(className, text){ //crete a button with a classNAme and a textContent
     const button = document.createElement('button');
@@ -145,6 +148,14 @@ clearButton.addEventListener('click',clear);
 function clear(){ //clearing the screen
     totalExpression.length = "";
     screen.textContent = "";
+    outputScreen.textContent = "";
 }
-
+function enter (){
+    if(numberDigits.length != 0){
+        totalExpression.push( numberDigits);
+        numberDigits = "";
+    }
+    console.log(totalExpression);
+    outputScreen.textContent = evaluatePost(preToPost(totalExpression));
+}
 console.log(totalExpression);
