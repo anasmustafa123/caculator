@@ -32,14 +32,14 @@ function isOperator(char){ //check if char is an operator
 function preToPost(exp){
     let stack  = [];
     let result = [];
-    exp.forEach(element => { //loop for all elements (number or operators)
-        if( parseInt(element)){ //if number add it to the expression
-            result[result.length] = parseInt(element);
+    for(let i = 0 ; i < exp.length ;i++){ //loop for all elements (number or operators)
+        if( parseInt(exp[i])){ //if number add it to the expression
+            result[result.length] = parseInt(exp[i]);
         }
-        else if(element == '('){  //if '(' push to stack wait for ')'
-            stack.push(element);
+        else if(exp[i] == '('){  //if '(' push to stack wait for ')'
+            stack.push(exp[i]);
         }
-        else if(element == ')') {  //if ')'  pop and add to final expression till '('
+        else if(exp[i] == ')') {  //if ')'  pop and add to final expression till '('
             while(stack[stack.length-1] != '(' && stack.length != 0){
                 result[result.length] = stack.pop();
             }
@@ -48,23 +48,23 @@ function preToPost(exp){
                 return result;
             }
             stack.pop(); //removing the '('
-        }else if(isOperator(element)){ //if its an operator 
-            for(let i = stack.length-1; i >= 0;i--){
-                if(priority(element) <=  priority(stack[i])){
+        }else if(isOperator(exp[i])){ //if its an operator 
+            for(let j = stack.length-1; j >= 0;j--){
+                if(priority(exp[i]) <=  priority(stack[j])){
                     result[result.length] = stack.pop();
                 }else{
-                    stack.push(element);
+                    stack.push(exp[i]);
                     break;
                 }
             }
             if(stack.length == 0){
-                stack.push(element);
+                stack.push(exp[i]);
             }
         }else {
             result=  null;
             return result;
         }
-    });
+    }
     while(stack.length != 0){
         result[result.length] = stack.pop(); 
     }
@@ -81,9 +81,9 @@ function priority(operator){
 function evaluatePost(post){
     let stack  = [];
     if(post == null){return null;}
-    post.forEach(element => { //loop for all elements (number or operators)
-        if(parseInt(element)){ //if number push to stack
-            stack.push(element);
+    for(let i = 0; i < post.length; i++){ //loop for all elements (number or operators)
+        if(parseInt(post[i])){ //if number push to stack
+            stack.push(post[i]);
         }else{ //if its an operator
             let num1,num2;
              if(stack.length != 0){
@@ -98,9 +98,9 @@ function evaluatePost(post){
                     return null;
                 }
              }else{return null}
-            stack.push(operate(element, num2, num1));
+            stack.push(operate(post[i], num2, num1));
         }
-    });
+    }
     return stack.pop();
 }
 ///////////////////// manipulating the dom
