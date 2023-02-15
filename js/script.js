@@ -23,7 +23,12 @@ function operate(operator, a, b){
         default : throw new ArgumentException
     }
 }
-
+function isOperator(char){ //check if char is an operator
+    switch (char){
+        case '+': case '-': case '*': case  '/': return true;
+        default : return false;
+    }
+}
 function preToPost(exp){
     let stack  = [];
     let result = [];
@@ -39,7 +44,7 @@ function preToPost(exp){
                 result[result.length] = stack.pop();
             }
             stack.pop(); //removing the '('
-        }else{ //if its an operator 
+        }else if(isOperator(element)){ //if its an operator 
             for(let i = stack.length-1; i >= 0;i--){
                 if(priority(element) <=  priority(stack[i])){
                     result[result.length] = stack.pop();
@@ -151,7 +156,7 @@ function clear(){ //clearing the screen
     outputScreen.textContent = "";
 }
 function enter (){
-    if(numberDigits.length != 0){
+        if(numberDigits.length != 0){
         totalExpression.push( numberDigits);
         numberDigits = "";
     }
