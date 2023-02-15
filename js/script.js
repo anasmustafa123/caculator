@@ -40,8 +40,12 @@ function preToPost(exp){
             stack.push(element);
         }
         else if(element == ')') {  //if ')'  pop and add to final expression till '('
-            while(stack[stack.length-1] != '('){
+            while(stack[stack.length-1] != '(' && stack.length != 0){
                 result[result.length] = stack.pop();
+            }
+            if(stack.length == 0){ //that means it traversed the whole expression without finding any '('
+                result=  null;
+                return result;
             }
             stack.pop(); //removing the '('
         }else if(isOperator(element)){ //if its an operator 
@@ -56,6 +60,9 @@ function preToPost(exp){
             if(stack.length == 0){
                 stack.push(element);
             }
+        }else {
+            result=  null;
+            return result;
         }
     });
     while(stack.length != 0){
@@ -73,12 +80,24 @@ function priority(operator){
 }
 function evaluatePost(post){
     let stack  = [];
+    if(post == null){return null;}
     post.forEach(element => { //loop for all elements (number or operators)
         if(parseInt(element)){ //if number push to stack
             stack.push(element);
-        }else{ //if its an operator 
-            let num1 = stack.pop();
-            let num2 = stack.pop();
+        }else{ //if its an operator
+            let num1,num2;
+             if(stack.length != 0){
+                 num1 = stack.pop();
+                if(!parseInt(num1)){
+                    return null;
+                }
+             }else{return null}
+             if(stack.length != 0){
+                 num2 = stack.pop();
+                if(!parseInt(num2)){
+                    return null;
+                }
+             }else{return null}
             stack.push(operate(element, num2, num1));
         }
     });
@@ -161,6 +180,12 @@ function enter (){
         numberDigits = "";
     }
     console.log(totalExpression);
-    outputScreen.textContent = evaluatePost(preToPost(totalExpression));
+    output = evaluatePost(preToPost(totalExpression) );
+    if(output == null){
+        outputScreen.textContent = "SYNTAX ERROR  [AC] : CANCEL";
+    }else{
+        outputScreen.textContent = output;
+    }
 }
+    
 console.log(totalExpression);
