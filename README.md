@@ -5,7 +5,7 @@ calculator link : <a href= "https://anasmustafa123.github.io/calculator/"> calcu
 to do:
 1-accepting floating-numbers  +  '.' 
 2-accepting inputs using keyboard
-
+3-adding a rounding button to round the number between float and int
 
 
 
