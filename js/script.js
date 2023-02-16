@@ -20,7 +20,7 @@ function operate(operator, a, b){
         case '-' : return sub(a,b); 
         case '*' : return mul(a,b); 
         case '/' : return div(a,b); 
-        default : throw new ArgumentException
+        default : return null;
     }
 }
 function isOperator(char){ //check if char is an operator
@@ -98,7 +98,9 @@ function evaluatePost(post){
                     return null;
                 }
              }else{return null}
-            stack.push(operate(post[i], num2, num1));
+             let output = operate(post[i], num2, num1);
+             if(output == null){return null;}
+            stack.push(output);
         }
     }
     return stack.pop();
@@ -139,6 +141,7 @@ Array.from(operators).forEach( (operator) => { //looping in all operators
 });
 function addingToScreen(e){ //adding the number if exists and adding operator to the screen  
     screen.textContent += e.target.textContent;
+    outputScreen.textContent = "";
 }
 
 clearButton.addEventListener('click',clear);
