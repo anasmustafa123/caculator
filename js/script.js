@@ -126,7 +126,7 @@ for (let i = 9; i >= 0; i--){ //creating the number buttons and adding them to d
     count++;
     const number  = createButton('number',i);
     number.id = i; 
-    number.addEventListener('click',addDigitToScreen);
+    number.addEventListener('click',addingToScreen);
     document.querySelector(`.row${rowNumber}`).appendChild(number); //adding each 3 buttons to a sep rowClass 
 }
 row4.appendChild(clearButton);
@@ -134,14 +134,10 @@ row4.appendChild(equalButton);
 
 equalButton.addEventListener('click',enter);
 
-function addDigitToScreen(e){ //addingthe digit to the screen + adding to numberDigit 
-    screen.textContent += e.target.textContent;
-}
-
 Array.from(operators).forEach( (operator) => { //looping in all operators
-    operator.addEventListener('click', addingOperator);
+    operator.addEventListener('click', addingToScreen);
 });
-function addingOperator(e){ //adding the number if exists and adding operator to the screen  
+function addingToScreen(e){ //adding the number if exists and adding operator to the screen  
     screen.textContent += e.target.textContent;
 }
 
