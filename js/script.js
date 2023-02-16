@@ -116,10 +116,6 @@ const outputScreen = document.querySelector('.screen2');
 const clearButton = createButton('clear','AC');
 const equalButton = createButton('equal','=');
 
-let totalExpression = []; //total expression showed on the screen
-let numberDigits = "";    /*current number.  will be added to totalexpression when
-                                                            a operator is selected                 */
-
 let rowNumber = 1; //row number
 let count = 0;     //to count only 3 buttons on each row
 
@@ -138,54 +134,54 @@ row4.appendChild(equalButton);
 
 equalButton.addEventListener('click',enter);
 
-function  createButton(className, text){ //crete a button with a classNAme and a textContent
-    const button = document.createElement('button');
-    button.classList.add(className) ;
-    button.textContent = text; 
-    return button;
-}
 function addDigitToScreen(e){ //addingthe digit to the screen + adding to numberDigit 
     screen.textContent += e.target.textContent;
-    addingDigit(e); 
-}
-function addingDigit(e){//adding to numberDigits
-    numberDigits += e.target.textContent;
 }
 
 Array.from(operators).forEach( (operator) => { //looping in all operators
     operator.addEventListener('click', addingOperator);
 });
 function addingOperator(e){ //adding the number if exists and adding operator to the screen  
-    if(parseInt(numberDigits)){
-        addTotalNumber(e);
-    }
-    totalExpression[totalExpression.length] = e.target.textContent;
     screen.textContent += e.target.textContent;
 }
 
-function addTotalNumber(e){//adding the number to the expression 
-    totalExpression[totalExpression.length] = numberDigits;
-    numberDigits = "";  
-}
 clearButton.addEventListener('click',clear);
 
 function clear(){ //clearing the screen
-    totalExpression.length = "";
     screen.textContent = "";
     outputScreen.textContent = "";
 }
 function enter (){
-        if(numberDigits.length != 0){
-        totalExpression.push( numberDigits);
-        numberDigits = "";
-    }
-    console.log(totalExpression);
-    output = evaluatePost(preToPost(totalExpression) );
-    if(output == null){
+    output = evaluatePost(preToPost(separateExpression(screen.textContent))) ;
+     if(output == null){
         outputScreen.textContent = "SYNTAX ERROR  [AC] : CANCEL";
     }else{
         outputScreen.textContent = output;
-    }
+    } 
 }
-    
-console.log(totalExpression);
+function  createButton(className, text){ //crete a button with a classNAme and a textContent
+    const button = document.createElement('button');
+    button.classList.add(className) ;
+    button.textContent = text; 
+    return button;
+}
+function separateExpression(exp){
+    let finalExp = [];
+    let number = "";
+    for (let i = 0; i < exp.length; i++) {
+        if(!isNaN(exp[i])){
+            number += exp[i];
+        }else if(isOperator(exp[i]) || exp[i] == '(' || exp[i] == ')'){
+            if(number.length != 0){
+                finalExp.push(number);
+                number = "";
+            }
+            finalExp.push(exp[i]);
+        }
+    }   
+    if(number.length != 0){
+       finalExp.push(number);
+    }
+    console.log(finalExp);
+    return  finalExp;  
+}
