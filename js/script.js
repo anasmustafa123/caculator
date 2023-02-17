@@ -164,7 +164,7 @@ function  createButton(className, text){ //crete a button with a classNAme and a
     button.textContent = text; 
     return button;
 }
-function separateExpression(exp){
+function separateExpression(exp){ //separating the expression into array of strings each one is either  (number,operator,'(',')')
     let finalExp = [];
     let number = "";
     for (let i = 0; i < exp.length; i++) {
@@ -183,4 +183,20 @@ function separateExpression(exp){
     }
     console.log(finalExp);
     return  finalExp;  
+}
+document.addEventListener('keypress', (e) =>{
+    console.log(e)
+    if(isValidInput(e))  { //check if valid input (number-operators,'(',')')
+        screen.textContent += e.key;
+        outputScreen.textContent = "";
+    }else if(e.key.toLowerCase () == 'enter'){
+        enter();
+    }
+});
+
+function isValidInput(e){
+    if(e.key>=0 && e.key<=9 || isOperator(e.key.toLowerCase()) || e.key.toLowerCase() == '(' || e.key.toLowerCase() == ')'){
+        return true;
+    }
+    else return false; 
 }
