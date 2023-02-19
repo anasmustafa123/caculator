@@ -1,3 +1,6 @@
+head{
+    font-size: 16px;
+}
 body{
     margin: 0px;
     display: flex;
@@ -9,11 +12,8 @@ body{
     display: flex;
     flex-direction: column; 
     align-items: center;
-    width: 500px;
-    height: 600px;
-    margin-left: 10vw ;
-    margin-right: 10vw ;
-    margin-top: 10vh;  
+    width: 27vw;
+    height: 63vh;
     background-color: rgb(54, 53, 53);
     border-radius: 30px;
 }
@@ -21,9 +21,9 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin:  2.5vh 1.6vw 2.5vh 1.6vw;
+    margin: 2.5% 0.5% 1% 0.5%;
     width: 86%;
-    height: 50%;
+    height: 35%;
     border-radius: 30px;
     overflow-x: scroll;
     color: white;
@@ -35,42 +35,44 @@ body{
     width: 100%;
     height: auto;
     font-weight: 500;
-    font-size: 40px;
+    font-size: 2rem;
     padding: 5px;
 }
 .screen2{
     background-color: rgb(92, 90, 90);
     width: 100%;
-    height: 40px;
-    font-weight: 700;
-    font-size: 30px;
+    height: 20%;
+    font-size: 2rem;
     text-align: end;
 }
 
 .btns-container{
     display: flex;
     align-items: center;
-    margin:  2.5vh 1.6vw 2.5vh 1.6vw;
     width: 86%;
     height: 70%;
     border-radius: 30px;
 }
 .numbers-container,.operators{
-     display: flex;
-     height: 250px;
-     justify-content: center;
-     align-items: center;
-     border-radius: 30px;
-    padding: 8px;
+    display: flex;
+    height: 65%;
+    /* justify-content: center; */
+    align-items: center;
+    border-radius: 30px;
+    /* padding: 8px; */
     flex-wrap: wrap;
+    width: 32%;
 }
 .numbers-container{
-    width: 300px;
+    width: 70%;
     gap: 6px;
     align-items: center;
 }
+.row1,.row2,.row3,.row4,.parentheses,.add-sub,.mul-div{
+    width: 100%;
+}
 .numbers-container button{
-    width: 93px;
+    width: 30%;
     height: 40px;
     border-radius: 30px;
     text-align: center;
@@ -83,7 +85,7 @@ body{
     display: flex;
 }
 .operators button{
-    width: 50px;
+    width: 70%;
     height: 40px;
     background-color: #a2a2a2;
 }
@@ -95,7 +97,6 @@ body{
 }
 .row4{
     display: flex;
-    justify-content: center;
 }
 .clear{
     border-radius: 5px 5px 20px 5px;
