@@ -1,5 +1,5 @@
-head{
-    font-size: 16px;
+html{
+    font-size: 1.2vmin;
 }
 body{
     margin: 0px;
@@ -55,17 +55,16 @@ body{
 }
 .numbers-container,.operators{
     display: flex;
-    height: 65%;
+    height: 99%;
     /* justify-content: center; */
     align-items: center;
     border-radius: 30px;
     /* padding: 8px; */
     flex-wrap: wrap;
-    width: 32%;
+    width: 28%;
 }
 .numbers-container{
     width: 70%;
-    gap: 6px;
     align-items: center;
 }
 .row1,.row2,.row3,.row4,.parentheses,.add-sub,.mul-div{
@@ -73,21 +72,21 @@ body{
 }
 .numbers-container button{
     width: 30%;
-    height: 40px;
+    height: 48px;
     border-radius: 30px;
     text-align: center;
     background-color: #a2a2a2;
+    font-size: 1.5rem;
 }
-.operators{
-    width: 100px;
-}
+
 .operators div{
     display: flex;
 }
 .operators button{
     width: 70%;
-    height: 40px;
+    height: 45px;
     background-color: #a2a2a2;
+    font-size: 1.5rem;
 }
 .add , .div, .open-p{
     border-radius: 5px 5px 40px 5px;
