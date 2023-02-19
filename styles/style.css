@@ -6,14 +6,16 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;  
+    width: 100vw;
     height: 100vh;
 }
 .calc-container{
     display: flex;
     flex-direction: column; 
     align-items: center;
-    width: 27vw;
     height: 63vh;
+    max-width: 480px;
+    flex-grow: 1;
     background-color: rgb(54, 53, 53);
     border-radius: 30px;
 }
